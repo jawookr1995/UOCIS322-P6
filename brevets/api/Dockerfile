@@ -1,6 +1,5 @@
 FROM python:3.8
 LABEL maintainer="jawookr1995@gmail.com"
-COPY . /api
-WORKDIR /api
-RUN pip install -r requirements.txt
+COPY . /usr/src/app
+
 CMD ["python", "api.py"]
