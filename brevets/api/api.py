@@ -17,15 +17,15 @@ class ListAllJSON(Resource):
         args = parser.parse_args()
 
         items = []
-        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1, "begin_time": 1})
+        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1,})
         dist_date_time = []
         i = 0
-        dist_date_time.append(["distance", "begin_date", "begin_time"])
+        dist_date_time.append(["distance", "begin_date"])
         for ddt in _dist_date_time:
             if i == 0:
-                dist_date_time.append([ddt['distance'], ddt['begin_date'], ddt['begin_time']])
+                dist_date_time.append([ddt['distance'], ddt['begin_date']])
             i += 1
-        _items = db.tododb.find({}, { "distance": 0, "begin_date": 0, "begin_time": 0}).sort("km")
+        _items = db.tododb.find({}, { "distance": 0, "begin_date": 0}).sort("km")
 
         header = []
         header.append(["miles", "km", "location", "open", "close"])
@@ -45,13 +45,12 @@ class ListOpenOnlyJSON(Resource):
         args = parser.parse_args()
 
         items = []
-        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1, "begin_time": 1})
-        dist_date_time = []
+        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1})
         i = 0
-        dist_date_time.append(["distance", "begin_date", "begin_time"])
+        dist_date_time.append(["distance", "begin_date"])
         for ddt in _dist_date_time:
             if i == 0:
-                dist_date_time.append([ddt['distance'], ddt['begin_date'], ddt['begin_time']])
+                dist_date_time.append([ddt['distance'], ddt['begin_date']])
             i += 1
         _items = db.tododb.find({}, { "miles": 1, "km": 1, "open": 1}).sort("km")
 
@@ -73,13 +72,13 @@ class ListCloseOnlyJSON(Resource):
         args = parser.parse_args()
 
         items = []
-        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1, "begin_time": 1})
+        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1})
         dist_date_time = []
         i = 0
-        dist_date_time.append(["distance", "begin_date", "begin_time"])
+        dist_date_time.append(["distance", "begin_date"])
         for ddt in _dist_date_time:
             if i == 0:
-                dist_date_time.append([ddt['distance'], ddt['begin_date'], ddt['begin_time']])
+                dist_date_time.append([ddt['distance'], ddt['begin_date']])
             i += 1
         _items = db.tododb.find({}, { "miles": 1, "km": 1, "open": 1}).sort("km")
 
@@ -100,14 +99,14 @@ class ListAllcsv(Resource):
         parser.add_argument('top', type=int, location='args')
         args = parser.parse_args()
 
-        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1, "begin_time": 1})
+        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1})
         i = 0
-        ret = "\"distance\",\"begin_date\",\"begin_time\"\n"
+        ret = "\"distance\",\"begin_date\"\n"
         for ddt in _dist_date_time:
             if i == 0:
-               ret += "\"" + ddt['distance'] + "\",\"" + ddt['begin_date'] + "\",\"" + ddt['begin_time'] + "\"\n"
+               ret += "\"" + ddt['distance'] + "\",\"" + ddt['begin_date'] + "\"\n"
             i += 1
-        _items = db.tododb.find({}, { "distance": 0, "begin_date": 0, "begin_time": 0}).sort("km")
+        _items = db.tododb.find({}, { "distance": 0, "begin_date": 0}).sort("km")
 
         ret += "\"miles\",\"km\",\"location\",\"open\",\"close\"\n"
         i = 0
@@ -126,14 +125,14 @@ class ListOpenOnlycsv(Resource):
         parser.add_argument('top', type=int, location='args')
         args = parser.parse_args()
 
-        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1, "begin_time": 1})
+        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1})
         i = 0
-        ret = "\"distance\",\"begin_date\",\"begin_time\"\n"
+        ret = "\"distance\",\"begin_date\"\n"
         for ddt in _dist_date_time:
             if i == 0:
-               ret += "\"" + ddt['distance'] + "\",\"" + ddt['begin_date'] + "\",\"" + ddt['begin_time'] + "\"\n"
+               ret += "\"" + ddt['distance'] + "\",\"" + ddt['begin_date'] + "\"\n"
             i += 1
-        _items = db.tododb.find({}, { "distance": 0, "begin_date": 0, "begin_time": 0}).sort("km")
+        _items = db.tododb.find({}, { "distance": 0, "begin_date": 0}).sort("km")
 
         ret += "\"miles\",\"km\",\"location\",\"open\",\"close\"\n"
         i = 0
@@ -152,14 +151,14 @@ class ListCloseOnlycsv(Resource):
         parser.add_argument('top', type=int, location='args')
         args = parser.parse_args()
 
-        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1, "begin_time": 1})
+        _dist_date_time = db.tododb.find({}, { "distance": 1, "begin_date": 1})
         i = 0
-        ret = "\"distance\",\"begin_date\",\"begin_time\"\n"
+        ret = "\"distance\",\"begin_date\"\n"
         for ddt in _dist_date_time:
             if i == 0:
-               ret += "\"" + ddt['distance'] + "\",\"" + ddt['begin_date'] + "\",\"" + ddt['begin_time'] + "\"\n"
+               ret += "\"" + ddt['distance'] + "\",\"" + ddt['begin_date'] + "\",\"" + "\"\n"
             i += 1
-        _items = db.tododb.find({}, { "distance": 0, "begin_date": 0, "begin_time": 0}).sort("km")
+        _items = db.tododb.find({}, { "distance": 0, "begin_date": 0}).sort("km")
 
         ret += "\"miles\",\"km\",\"location\",\"open\",\"close\"\n"
         i = 0
