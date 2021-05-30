@@ -1,5 +1,5 @@
 FROM python:3.8
-LABEL maintainer="noemail@website.domain"
+LABEL maintainer="jawookr1995@gmail.com"
 COPY . /api
 WORKDIR /api
 RUN pip install -r requirements.txt
