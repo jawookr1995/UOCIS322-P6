@@ -1,19 +1,37 @@
-version: '3'
+version: '3'  # version of compose format 
 
 services:
-  restapi:
-    build: ./api
+  laptop-service:
+    build: ./laptop  
+    volumes:
+      - ./laptop:/usr/src/app 
     ports:
-      - 5001:5000
+      - 5011:80  # host:container
+    environment: 
+      MONGODB_HOSTNAME: db
+    depends_on: 
+      - db
 
   website:
     image: php:apache
     volumes:
       - ./website:/var/www/html
     ports:
-      - 5000:80
+      - 5000:80  # host:container
     depends_on:
-      - restapi
-    environment:
-      BACKEND_ADDR: restapi
-      BACKEND_PORT: 5000
+      - laptop-service  # website is not going to work unless laptop-service is running
+
+  web:
+    build: ./brevets
+    command: python -u flask_brevets.py
+    ports:
+      - "5012:5000"
+    volumes:
+      - ./brevets:/index
+    environment: 
+      MONGODB_HOSTNAME: db
+    depends_on: 
+      - db
+
+  db:
+    image: mongo
