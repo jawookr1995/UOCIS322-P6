@@ -77,7 +77,6 @@ def new():
 
     distance = request.form['distance']
     begin_date = request.form['begin_date']
-    begin_time = request.form['begin_time']
     miles_list = request.form.getlist('miles')
     km_list = request.form.getlist('km')
     loc_list = request.form.getlist('location')
@@ -85,8 +84,7 @@ def new():
     close_list = request.form.getlist('close')
     item_doc = {
         'distance': distance,
-        'begin_date': begin_date,
-        'begin_time': begin_time
+        'begin_date': begin_date
     }
     db.tododb.insert_one(item_doc)
     for i in range(len(km_list)):
