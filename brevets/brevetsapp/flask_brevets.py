@@ -84,7 +84,7 @@ def new():
     close_list = request.form.getlist('close')
     item_doc = {
         'distance': distance,
-        'begin_date': begin_date
+        'begin_date': begin_date,
         'begin_time': begin_time
     }
     db.tododb.insert_one(item_doc)
