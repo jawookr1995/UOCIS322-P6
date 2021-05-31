@@ -81,16 +81,16 @@ class ListCloseOnlyJSON(Resource):
             if i == 0:
                 dist_date_time.append([ddt['distance'], ddt['begin_date'], ddt['begin_time']])
             i += 1
-        _items = db.tododb.find({}, { "miles": 1, "km": 1, "open": 1}).sort("km")
+        _items = db.tododb.find({}, { "miles": 1, "km": 1, "close": 1}).sort("km")
 
         header = []
-        header.append(["miles", "km", "open"])
+        header.append(["miles", "km", "close"])
         i = 0
         for item in _items:
             if i - 1 == args['top']:
                 break
             if i > 0:
-                items.append([item['miles'], item['km'], item['open']])
+                items.append([item['miles'], item['km'], item['close']])
             i += 1
         return {'header': header, 'items': items, 'ddt': dist_date_time}
 
@@ -135,13 +135,13 @@ class ListOpenOnlycsv(Resource):
             i += 1
         _items = db.tododb.find({}, { "distance": 0, "begin_date": 0, "begin_time": 0}).sort("km")
 
-        ret += "\"miles\",\"km\",\"location\",\"open\",\"close\"\n"
+        ret += "\"miles\",\"km\",\"location\",\"open\"\n"
         i = 0
         for item in _items:
             if i - 1 == args['top']:
                 break
             if i > 0:
-                ret += "\"" + str(item['miles']) + "\",\"" + str(item['km']) + "\",\"" + item['location'] + "\",\"" + item['open'] + "\",\"" + item['close']+ "\"\n"
+                ret += "\"" + str(item['miles']) + "\",\"" + str(item['km']) + "\",\"" + item['location'] + "\",\"" + item['open'] + "\"\n"
             i += 1
 
         return ret
@@ -161,13 +161,13 @@ class ListCloseOnlycsv(Resource):
             i += 1
         _items = db.tododb.find({}, { "distance": 0, "begin_date": 0, "begin_time": 0}).sort("km")
 
-        ret += "\"miles\",\"km\",\"location\",\"open\",\"close\"\n"
+        ret += "\"miles\",\"km\",\"location\",\"close\"\n"
         i = 0
         for item in _items:
             if i - 1 == args['top']:
                 break
             if i > 0:
-                ret += "\"" + str(item['miles']) + "\",\"" + str(item['km']) + "\",\"" + item['location'] + "\",\"" + item['open'] + "\",\"" + item['close']+ "\"\n"
+                ret += "\"" + str(item['miles']) + "\",\"" + str(item['km']) + "\",\"" + item['location'] + "\",\"" + "\",\"" + item['close']+ "\"\n"
             i += 1
 
         return ret
