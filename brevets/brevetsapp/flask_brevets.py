@@ -77,7 +77,7 @@ def new():
 
     distance = request.form['distance']
     begin_date = request.form['begin_date']
-    begin_date = request.form['begin_time']
+    begin_time = request.form['begin_time']
     miles_list = request.form.getlist('miles')
     km_list = request.form.getlist('km')
     loc_list = request.form.getlist('location')
