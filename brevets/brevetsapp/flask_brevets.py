@@ -85,6 +85,7 @@ def new():
     item_doc = {
         'distance': distance,
         'begin_date': begin_date
+        'begin_time': begin_time
     }
     db.tododb.insert_one(item_doc)
     for i in range(len(km_list)):
