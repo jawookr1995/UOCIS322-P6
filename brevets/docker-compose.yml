@@ -6,7 +6,7 @@ services:
     volumes:
       - ./api:/usr/src/app 
     ports:
-      - 5011:80  # host:container
+      - 5091:80  # host:container
     environment: 
       - DB_PORT_27017_TCP_ADDR=db
     depends_on: 
@@ -17,7 +17,7 @@ services:
     volumes:
       - ./website:/var/www/html
     ports:
-      - 5010:80  # host:container
+      - 5090:80  # host:container
     depends_on:
       - laptop-service  # website is not going to work unless laptop-service is running
 
@@ -25,7 +25,7 @@ services:
     build: ./brevetsapp
     command: python -u flask_brevets.py
     ports:
-      - "5012:5000"
+      - "5092:5000"
     volumes:
       - ./brevetsapp:/index
     environment: 
